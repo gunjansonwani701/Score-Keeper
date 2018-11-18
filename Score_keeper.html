@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head><title>SCORE keeper</title>
+	<style>
+		.winner{
+			color:green;
+		}	
+		
+	</style>
+	</head>
+	<body>
+	
+	<h1><span id="p1Dis">0</span> to <span id="p2Dis">0</span></h1>
+	<p>Playing to:<span> 5</span> </p>
+	<input type="number">
+	<button id="p1">Player 1</button>
+	<button id="p2">Player 2</button>
+	<button id="reset">Reset</button>
+	
+	<script>
+		alert("connected");
+		var body=document.querySelector("body");
+		body.style.backgroundColor="pink";
+		var p1=document.querySelector("#p1");
+		var p2=document.querySelector("#p2");
+		var p1Dis=document.querySelector("#p1Dis");
+		var p2Dis=document.querySelector("#p2Dis");
+		var gameOver=false;
+		var reset=document.getElementById("reset");
+		var numInput=document.querySelector("input"); 
+		var playingTo=document.querySelector("p span");
+		var winningScore=5;
+		var p1Score=0;
+		p1.addEventListener("click",function(){
+				if(!gameOver)
+				{
+				p1Score++;
+				console.log(p1Score,winningScore);
+				
+				if(p1Score==winningScore)
+				{
+				   p1Dis.classList.add("winner");
+				   gameOver=true;
+				
+				}
+				p1Dis.textContent=p1Score;
+				}
+		})
+		
+		var p2Score=0;
+		p2.addEventListener("click",function(){
+				if(!gameOver)
+				{
+				p2Score++;
+				if(p2Score==winningScore)
+				{
+				   p2Dis.classList.add("winner");
+				   gameOver=true;
+				
+				}
+				p2Dis.textContent=p2Score;
+				}
+		})
+		
+		reset.addEventListener("click",function(){
+				p1Score=0;
+				p2Score=0;
+				p1Dis.textContent=0;
+				p2Dis.textContent=0;
+				p1Dis.classList.remove("winner");
+				p2Dis.classList.remove("winner");
+				gameOver=false;
+		});
+		
+		numInput.addEventListener("change",function(){
+				playingTo.textContent=numInput.value;
+			    winningScore=numInput.value;
+		});
+		
+	</script>
+	</body>
+</html>
